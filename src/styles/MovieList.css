@@ -1,0 +1,25 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#movie-list {
+    border: 1px solid red;
+    background-color: white;
+    padding: 20px 40px;
+    width: 85%;
+    margin: auto;
+    max-width: 1200px;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.load-btn {
+    width: fit-content;
+    margin: auto;
+}
