@@ -1,4 +1,4 @@
-import '../styles/MovieCard.css'
+import '../styles/MovieCard.css';
 
 const MovieCard = ({id, title, poster, rating, onClick}) => {
 

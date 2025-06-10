@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import '../styles/NavBar.css'
+import '../styles/NavBar.css';
 
 import { searchData, parseMovieData } from "../utils/utils";
 

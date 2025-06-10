@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import '../styles/App.css'
-import '../styles/FlixsterHeader.css'
+import { useEffect, useState } from 'react';
+import '../styles/App.css';
+import '../styles/FlixsterHeader.css';
 
 const FlixsterHeader = () => {
 
