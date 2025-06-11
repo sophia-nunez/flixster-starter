@@ -14,6 +14,7 @@ const Modal = (props) => {
           <p><strong>Release Date: </strong> {props.releaseDate}</p>
           <p><strong>Overview: </strong> {props.overview}</p>
           <p><strong>Genres: </strong> {props.genres}</p>
+          {props.trailer === "" ? <p>No trailer to display</p> : <iframe src={`https://www.youtube.com/embed/${props.trailer}`}></iframe>}
         </article>
       </section>
     </aside>

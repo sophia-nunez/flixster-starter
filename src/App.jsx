@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar";
 import MovieList from "./components/MovieList";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
-import { fetchByID } from "./utils/utils";
+import { fetchByID, fetchVideo } from "./utils/utils";
 
 const App = () => {
   const [movieType, setMovieType] = useState("now-playing");
@@ -16,6 +16,7 @@ const App = () => {
   const [releaseDate, setReleaseDate] = useState("");
   const [genres, setGenres] = useState("");
   const [overview, setOverview] = useState("");
+  const [trailer, setTrailer] = useState("");
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -36,6 +37,13 @@ const App = () => {
     setReleaseDate(movie.release_date);
     setGenres(genreNames.join(" | "));
 
+    // get video
+    const videos = await fetchVideo(movieID);
+    const trailers = videos.results.filter(video => video.type === "Teaser" && video.site === "YouTube");
+    if (trailers.length > 0) {
+      setTrailer(trailers[0].key);
+    }
+    
     setModalOpen(true);
   }
 
@@ -76,6 +84,7 @@ const App = () => {
           releaseDate={releaseDate}
           genres={genres}
           overview={overview}
+          trailer={trailer}
         ></Modal>
       )}
     </div>

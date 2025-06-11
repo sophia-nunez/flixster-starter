@@ -50,3 +50,7 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+iframe {
+  height: 200px;
+}

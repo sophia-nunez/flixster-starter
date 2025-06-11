@@ -74,6 +74,31 @@ const fetchByID = async (movieID) => {
   }
 };
 
+const fetchVideo = async (movieID) => {
+  try {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${API_KEY}`,
+      },
+    };
+
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieID}/videos?language=en-US`,
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch movie by ID data");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+
+}
+
 async function parseMovieData(data) {
   const movies = [];
 
@@ -101,4 +126,4 @@ async function parseMovieData(data) {
   return movies;
 }
 
-export { fetchData, searchData, fetchByID, parseMovieData };
+export { fetchData, searchData, fetchByID, parseMovieData, fetchVideo };
