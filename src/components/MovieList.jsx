@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 
 import MovieCard from "./MovieCard";
-import NavBar from "./NavBar";
+import SearchBar from "./SearchBar";
 import "../styles/MovieList.css";
 import { fetchData, parseMovieData } from "../utils/utils";
 
-const MovieList = (props) => {
+const MovieList = ({toggleModal, movieType}) => {
   const [movieList, setMovieList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [morePages, setMorePages] = useState(true);
+  const [filter, setFilter] = useState("default");
 
   useEffect(() => {
     try {
       getMovieData();
+      sortMovies(filter);
 
       if (currentPage >= totalPages) {
         setMorePages(false); // no Load More button
@@ -23,20 +25,38 @@ const MovieList = (props) => {
     }
   }, [currentPage]);
 
+  useEffect(() => {
+    // filter movieList based on what page we're on
+    switch (movieType) {
+      case 'now-playing':
+        getMovieData();
+        break;
+      case 'favorites':
+        const likedList = movieList.filter(movie => movie.liked === true);
+        setMovieList(likedList);
+        break;
+      case 'watched':
+        const watchedList = movieList.filter(movie => movie.watched === true);
+        setMovieList(watchedList);
+        break;
+    }
+  }, [movieType]);
+
   async function getMovieData() {
     const data = await fetchData(currentPage);
     const list = await parseMovieData(data);
 
     setTotalPages(data.total_pages);
-    setMovieList(list);
+    setMovieList((movieList) => currentPage === 1 ? list : [...movieList, ...list]);
   }
 
-  const incrementPage = () => {
+  const nextPage = () => {
     setCurrentPage(currentPage + 1);
   };
 
   const sortMovies = (filter) => {
     let sortedMovies = [...movieList];
+
     switch (filter) {
       case 'alphabetical':
         sortedMovies.sort((a, b) => a.title.localeCompare(b.title))
@@ -57,9 +77,31 @@ const MovieList = (props) => {
     setMovieList(sortedMovies);
   }
 
+  const likeMovie = (selectedId, liked) => {
+    const likedMovie = movieList.find(movie => movie.id === selectedId);
+    if (liked) {
+      likedMovie.liked = false;
+    } else {
+      likedMovie.liked = true;
+    }
+
+    console.log(movieList);
+  }
+
+  const watchMovie = (selectedId, watched) => {
+    const watchedMovie = movieList.find(movie => movie.id === selectedId);
+    if (watched) {
+      watchedMovie.watched = false;
+    } else {
+      watchedMovie.watched = true;
+    }
+
+    console.log(movieList);
+  }
+
   return (
     <>
-      <NavBar setMovieList={setMovieList} getMovieData={getMovieData} sortMovies={sortMovies}></NavBar>
+      <SearchBar setMovieList={setMovieList} getMovieData={getMovieData} sortMovies={sortMovies} setFilter={setFilter}></SearchBar>
       <main>
         <h1>Movies</h1>
         <section id="movie-list">
@@ -74,13 +116,15 @@ const MovieList = (props) => {
                 title={title}
                 poster={poster}
                 rating={rating}
-                onClick={props.toggleModal(id)}
+                onClick={toggleModal(id)}
+                likeMovie={likeMovie}
+                watchMovie={watchMovie}
               ></MovieCard>
             );
           })}
         </section>
         {morePages && (
-          <button className="load-btn" onClick={incrementPage}>
+          <button className="load-btn" onClick={nextPage}>
             Load More
           </button>
         )}
