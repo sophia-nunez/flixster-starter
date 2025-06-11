@@ -52,9 +52,11 @@ const App = () => {
       const span = document.getElementsByClassName("close")[0];
       if (event.target === span) {
         setModalOpen(false);
+        setTrailer("");
       }
       if (modalRef.current && event.target === modalRef.current) {
         setModalOpen(false);
+        setTrailer("");
       }
     }
 
