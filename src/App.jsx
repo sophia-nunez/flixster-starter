@@ -19,10 +19,6 @@ const App = () => {
   const [trailer, setTrailer] = useState("");
   const modalRef = useRef(null);
 
-  useEffect(() => {
-    console.log(movieType);
-  }, [movieType])
-
   async function openModal(movieID) {
     const movie = await fetchByID(movieID);
 
@@ -70,10 +66,8 @@ const App = () => {
   return (
     <div className="App">
       <FlixsterHeader/>
-      <section className="main-flex">
-        <NavBar setMovieType={setMovieType}/>
-        <MovieList toggleModal={() => openModal} movieType={movieType}></MovieList>
-      </section>
+      <NavBar setMovieType={setMovieType}/>
+      <MovieList toggleModal={() => openModal} movieType={movieType}></MovieList>
       <Footer/>
 
       {modalOpen && (

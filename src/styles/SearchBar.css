@@ -3,3 +3,14 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+.search-bar-container {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+
+    * {
+        height: 1.5em;
+        border: none; 
+    }
+}

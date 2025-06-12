@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import '../styles/SearchBar.css';
+import { MdClear } from "react-icons/md";
+
 
 import { searchData, parseMovieData } from "../utils/utils";
 
@@ -9,7 +11,6 @@ const SearchBar = (props) => {
 
   useEffect(() => {
     setDropdownValue("default");
-    handleSearch();
   }, [searchInput]);
 
   useEffect(() => {
@@ -46,15 +47,29 @@ const SearchBar = (props) => {
     const {value} = event.target;
     setDropdownValue(value);
   }
+
+  const enterSearch = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  }
+
+  const handleClear = () => {
+    setSearchInput("");
+    props.getMovieData();
+  }
   
   return (
     <section className="search-bar">
-                <div>
-                    <input type="search" id="search-bar" placeholder="Find a movie..." value={searchInput} onChange={updateSearch}></input>
+                <div className="search-container">
+                    <div className="search-bar-container">
+                      <input type="text" id="search-bar" placeholder="Find a movie..." value={searchInput} onChange={updateSearch} onKeyUp={enterSearch}></input>
+                      <div><MdClear onClick={handleClear}/></div>
+                    </div>
                     <button type="submit" onClick={handleSearch}>Search</button>
                 </div>
                 <div>
-                    <select id="sort-by" name="sort-by" defaultValue="default" value={dropdownValue} onChange={handleChange}>
+                    <select id="sort-by" name="sort-by" defaultValue="default" onChange={handleChange}>
                         <option value="default" disabled={true}>Select option</option>
                         <option value="alphabetical">Title (A-Z)</option>
                         <option value="release">Most recent</option>

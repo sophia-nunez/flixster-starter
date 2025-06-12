@@ -5,39 +5,37 @@ import SearchBar from "./SearchBar";
 import "../styles/MovieList.css";
 import { fetchData, parseMovieData } from "../utils/utils";
 
-const MovieList = ({toggleModal, movieType}) => {
-  const [movieList, setMovieList] = useState([]);
+const MovieList = ({ toggleModal, movieType }) => {
+  const [displayedList, setDisplayedList] = useState(Array());
+  const [movieList, setMovieList] = useState(Array());
+  const [favorites, setFavorites] = useState(Array());
+  const [watchedMovies, setWatchedMovies] = useState(Array());
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [morePages, setMorePages] = useState(true);
   const [filter, setFilter] = useState("default");
 
   useEffect(() => {
-    try {
-      getMovieData();
-      sortMovies(filter);
-
-      if (currentPage >= totalPages) {
-        setMorePages(false); // no Load More button
-      }
-    } catch (error) {
-      console.log("Movie data could not be fetched: " + error);
-    }
+    getMovieData();
   }, [currentPage]);
+
+  useEffect(() => {
+    setDisplayedList(movieList);
+  }, [movieList, currentPage]);
 
   useEffect(() => {
     // filter movieList based on what page we're on
     switch (movieType) {
-      case 'now-playing':
-        getMovieData();
+      case "now-playing":
+        setDisplayedList(movieList);
         break;
-      case 'favorites':
-        const likedList = movieList.filter(movie => movie.liked === true);
-        setMovieList(likedList);
+      case "favorites":
+        setDisplayedList(favorites);
+        setMorePages(false);
         break;
-      case 'watched':
-        const watchedList = movieList.filter(movie => movie.watched === true);
-        setMovieList(watchedList);
+        case "watched":
+          setDisplayedList(watchedMovies);
+          setMorePages(false);
         break;
     }
   }, [movieType]);
@@ -47,7 +45,9 @@ const MovieList = ({toggleModal, movieType}) => {
     const list = await parseMovieData(data);
 
     setTotalPages(data.total_pages);
-    setMovieList((movieList) => currentPage === 1 ? list : [...movieList, ...list]);
+    setMovieList((movieList) =>
+      currentPage === 1 ? list : [...movieList, ...list]
+    );
   }
 
   const nextPage = () => {
@@ -55,59 +55,89 @@ const MovieList = ({toggleModal, movieType}) => {
   };
 
   const sortMovies = (filter) => {
-    let sortedMovies = [...movieList];
+    let sortedMovies = [...displayedList];
 
     switch (filter) {
-      case 'alphabetical':
-        sortedMovies.sort((a, b) => a.title.localeCompare(b.title))
+      case "alphabetical":
+        sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
         break;
-      case 'release':
+      case "release":
         sortedMovies.sort((a, b) => {
           const dateA = new Date(a.releaseDate);
           const dateB = new Date(b.releaseDate);
 
           return dateB - dateA;
-        })
+        });
         break;
-      case 'rating':
+      case "rating":
         sortedMovies.sort((a, b) => b.rating - a.rating);
         break;
     }
 
-    setMovieList(sortedMovies);
-  }
+    setDisplayedList(sortedMovies);
+  };
 
   const likeMovie = (selectedId, liked) => {
-    const likedMovie = movieList.find(movie => movie.id === selectedId);
+    const likedMovie = movieList.find((movie) => movie.id === selectedId);
     if (liked) {
       likedMovie.liked = false;
     } else {
       likedMovie.liked = true;
     }
 
-    console.log(movieList);
-  }
+    if (!liked) {
+      if (likedMovie && !favorites.some((fav) => fav.id === selectedId)) {
+        // if the movie is NOT in the list
+        setFavorites([...favorites, likedMovie]);
+      }
+    } else {
+      // if already liked, remove it (unlike)
+      setFavorites(favorites.filter((movie) => movie.id !== selectedId));
+    }
+
+    console.log(likedMovie);
+  };
 
   const watchMovie = (selectedId, watched) => {
-    const watchedMovie = movieList.find(movie => movie.id === selectedId);
+    const watchedMovie = movieList.find((movie) => movie.id === selectedId);
     if (watched) {
       watchedMovie.watched = false;
     } else {
       watchedMovie.watched = true;
     }
 
-    console.log(movieList);
-  }
+    if (!watched) {
+      if (
+        watchedMovie &&
+        !watchedMovies.some((movie) => movie.id === selectedId)
+      ) {
+        // if the movie is NOT in the list
+        setWatchedMovies([...watchedMovies, watchedMovie]);
+      }
+    } else {
+      // if already liked, remove it (unlike)
+      setWatchedMovies(
+        watchedMovies.filter((movie) => movie.id !== selectedId)
+      );
+    }
+
+    console.log(watchedMovie);
+  };
 
   return (
     <>
-      <SearchBar setMovieList={setMovieList} getMovieData={getMovieData} sortMovies={sortMovies} setFilter={setFilter}></SearchBar>
       <main>
+        <SearchBar
+          setMovieList={setMovieList}
+          getMovieData={getMovieData}
+          sortMovies={sortMovies}
+          setFilter={setFilter}
+        ></SearchBar>
         <h1>Movies</h1>
         <section id="movie-list">
-          {movieList.length == 0 && <p>No movies to display.</p>}
-          {movieList.map((movie) => {
-            const { id, title, poster, rating } = movie;
+          {displayedList.length == 0 && <p>No movies to display.</p>}
+          {displayedList.map((movie) => {
+            const { id, title, poster, rating, liked, watched } = movie;
 
             return (
               <MovieCard
@@ -116,6 +146,8 @@ const MovieList = ({toggleModal, movieType}) => {
                 title={title}
                 poster={poster}
                 rating={rating}
+                liked={liked}
+                watched={watched}
                 onClick={toggleModal(id)}
                 likeMovie={likeMovie}
                 watchMovie={watchMovie}
@@ -124,13 +156,15 @@ const MovieList = ({toggleModal, movieType}) => {
           })}
         </section>
         {morePages && (
-          <button className="load-btn" onClick={nextPage}>
-            Load More
-          </button>
+          <>
+            <button className="load-btn" onClick={nextPage}>
+              Load More
+            </button>
+            <p>
+              Page {currentPage} of {totalPages}
+            </p>
+          </>
         )}
-        <p>
-          Page {currentPage} of {totalPages}
-        </p>
       </main>
     </>
   );

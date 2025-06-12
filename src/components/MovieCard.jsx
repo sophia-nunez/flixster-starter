@@ -3,22 +3,18 @@ import '../styles/MovieCard.css';
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
 
-const MovieCard = ({id, title, poster, rating, onClick, likeMovie, watchMovie}) => {
-    const [liked, setLiked] = useState(false);
-    const [watched, setWatched] = useState(false);
+const MovieCard = ({id, title, poster, rating, liked, watched, onClick, likeMovie, watchMovie}) => {
 
     const toggleLiked = (event) => {
         event.stopPropagation();
-        setLiked(!liked);
         likeMovie(id, liked);
     }
 
     const toggleWatched = (event) => {
         event.stopPropagation();
-        setWatched(!watched);
         watchMovie(id, watched);
     }
-        
+    
     return (
         <article className="movie-card" onClick={() => onClick(id)}>
             <img className="movie-poster" src={`https://image.tmdb.org/t/p/w300${poster}`}></img>

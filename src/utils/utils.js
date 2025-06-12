@@ -13,7 +13,6 @@ const fetchData = async (page) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}&include_adult=false&sort_by=title.asc`,
       options
-      // optionally use:  `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${filter}.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`,
     );
     if (!response.ok) {
       throw new Error("Failed to fetch movie data");
@@ -116,7 +115,9 @@ async function parseMovieData(data) {
       title,
       poster,
       rating,
-      releaseDate
+      releaseDate,
+      liked: false,
+      watched: false
     };
 
     // add to array
