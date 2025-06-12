@@ -5,9 +5,10 @@ main {
     flex-direction: column;
     gap: 10px;
     color: var(--primary-dark);
-}
-
-#movie-list {
+  }
+  
+  #movie-list {
+    border-radius: 5px;
     background-color: white;
     padding: 2em;
     width: 70%;

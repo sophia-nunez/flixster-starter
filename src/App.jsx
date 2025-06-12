@@ -35,7 +35,7 @@ const App = () => {
 
     // get video
     const videos = await fetchVideo(movieID);
-    const trailers = videos.results.filter(video => video.type === "Teaser" && video.site === "YouTube");
+    const trailers = videos.results.filter(video => video.type === "Trailer" && video.site === "YouTube");
     if (trailers.length > 0) {
       setTrailer(trailers[0].key);
     }
