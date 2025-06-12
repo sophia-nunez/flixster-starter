@@ -9,3 +9,11 @@
 
   font-size: xx-large;
 }
+
+@media (min-width: 1850px) {
+  .App-header {
+    padding: 40px;
+    font-size: xxx-large;
+  }
+
+}

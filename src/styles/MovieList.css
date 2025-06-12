@@ -5,16 +5,18 @@ main {
     flex-direction: column;
     gap: 10px;
     color: var(--primary-dark);
+
+    h1 {
+      font-size: 50px;
+    }
   }
   
   #movie-list {
     border-radius: 5px;
-    background-color: white;
     padding: 2em;
     width: 70%;
     margin: auto;
     margin-bottom: 20px;
-    max-width: 1200px;
     min-height: 400px;
 
     display: flex;
@@ -38,6 +40,21 @@ main {
 
   #movie-list {
     width: 85%;
+  }
+
+}
+
+@media (min-width: 1850px) {
+  main {
+    width: calc(100vw - 15rem);
+
+    h1 {
+      font-size: 100px;
+    }
+  }
+
+  #movie-list {
+    width: 60%;
   }
 
 }
