@@ -61,7 +61,7 @@ const SearchBar = (props) => {
 
   return (
     <section className="search-bar">
-      <div className="search-container">
+      {props.movieType === "now-playing" && <div className="search-container">
         <div className="search-bar-container">
           <input
             type="text"
@@ -78,7 +78,7 @@ const SearchBar = (props) => {
         <button type="submit" onClick={handleSearch}>
           Search
         </button>
-      </div>
+      </div>}
       <div className="sort-container">
         <select
           id="sort-by"

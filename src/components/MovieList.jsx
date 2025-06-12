@@ -166,6 +166,7 @@ const MovieList = ({ toggleModal, movieType }) => {
           loadList={loadList}
           sortMovies={sortMovies}
           setFilter={setFilter}
+          movieType={movieType}
         ></SearchBar>
         <section id="movie-list">
           {displayedList.length == 0 && <p>No movies to display.</p>}
