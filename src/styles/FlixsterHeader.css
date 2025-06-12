@@ -1,8 +1,4 @@
 .App-header {
-  position: absolute;
-  top: 0;
-  width: 100%;
-
   background-color: #282c34;
   display: flex;
   flex-direction: row;
@@ -10,5 +6,5 @@
   justify-content: space-evenly;
   color: white;
   padding: 20px;
-  margin-top: 0px;
+  margin: 0px;
 }

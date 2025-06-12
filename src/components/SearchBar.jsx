@@ -29,8 +29,7 @@ const SearchBar = (props) => {
   const handleSearch = (event) => {
 
     if (searchInput === "") {
-      props.getMovieData();
-      return;
+      handleClear();
     }
     
     searchForMovie();
@@ -40,7 +39,7 @@ const SearchBar = (props) => {
     const data = await searchData(searchInput);
     const movies = await parseMovieData(data);
 
-    props.setMovieList(movies);
+    props.setDisplayedList(movies);
   }
 
   const handleChange = (event) => {
@@ -56,7 +55,7 @@ const SearchBar = (props) => {
 
   const handleClear = () => {
     setSearchInput("");
-    props.getMovieData();
+    props.loadList();
   }
   
   return (
@@ -64,11 +63,11 @@ const SearchBar = (props) => {
                 <div className="search-container">
                     <div className="search-bar-container">
                       <input type="text" id="search-bar" placeholder="Find a movie..." value={searchInput} onChange={updateSearch} onKeyUp={enterSearch}></input>
-                      <div><MdClear onClick={handleClear}/></div>
+                      <div onClick={handleClear}><MdClear/></div>
                     </div>
                     <button type="submit" onClick={handleSearch}>Search</button>
                 </div>
-                <div>
+                <div className="sort-container">
                     <select id="sort-by" name="sort-by" defaultValue="default" onChange={handleChange}>
                         <option value="default" disabled={true}>Select option</option>
                         <option value="alphabetical">Title (A-Z)</option>

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import '../styles/MovieCard.css';
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';

@@ -66,8 +66,10 @@ const App = () => {
   return (
     <div className="App">
       <FlixsterHeader/>
-      <NavBar setMovieType={setMovieType}/>
-      <MovieList toggleModal={() => openModal} movieType={movieType}></MovieList>
+      <div class="content">
+        <NavBar setMovieType={setMovieType} movieType={movieType} />
+        <MovieList toggleModal={() => openModal} movieType={movieType}></MovieList>
+      </div>
       <Footer/>
 
       {modalOpen && (

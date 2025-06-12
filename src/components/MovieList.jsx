@@ -24,20 +24,7 @@ const MovieList = ({ toggleModal, movieType }) => {
   }, [movieList, currentPage]);
 
   useEffect(() => {
-    // filter movieList based on what page we're on
-    switch (movieType) {
-      case "now-playing":
-        setDisplayedList(movieList);
-        break;
-      case "favorites":
-        setDisplayedList(favorites);
-        setMorePages(false);
-        break;
-        case "watched":
-          setDisplayedList(watchedMovies);
-          setMorePages(false);
-        break;
-    }
+    loadList();
   }, [movieType]);
 
   async function getMovieData() {
@@ -53,6 +40,23 @@ const MovieList = ({ toggleModal, movieType }) => {
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
   };
+
+  const loadList = () => {
+    // filter movieList based on what page we're on
+    switch (movieType) {
+      case "now-playing":
+        setDisplayedList(movieList);
+        break;
+      case "favorites":
+        setDisplayedList(favorites);
+        setMorePages(false);
+        break;
+        case "watched":
+          setDisplayedList(watchedMovies);
+          setMorePages(false);
+        break;
+    }
+  }
 
   const sortMovies = (filter) => {
     let sortedMovies = [...displayedList];
@@ -94,8 +98,6 @@ const MovieList = ({ toggleModal, movieType }) => {
       // if already liked, remove it (unlike)
       setFavorites(favorites.filter((movie) => movie.id !== selectedId));
     }
-
-    console.log(likedMovie);
   };
 
   const watchMovie = (selectedId, watched) => {
@@ -128,8 +130,8 @@ const MovieList = ({ toggleModal, movieType }) => {
     <>
       <main>
         <SearchBar
-          setMovieList={setMovieList}
-          getMovieData={getMovieData}
+          setDisplayedList={setDisplayedList}
+          loadList={loadList}
           sortMovies={sortMovies}
           setFilter={setFilter}
         ></SearchBar>

@@ -1,11 +1,12 @@
 main {
+    margin: 3em 0px;
+    width: calc(100vw - 10rem);
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 #movie-list {
-    border: 1px solid red;
     background-color: white;
     padding: 20px 40px;
     width: 85%;
@@ -22,4 +23,9 @@ main {
 .load-btn {
     width: fit-content;
     margin: auto;
+}
+
+.status-container {
+    padding: .2em;
+    border-radius: 5px;
 }

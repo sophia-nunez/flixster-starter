@@ -1,6 +1,32 @@
 #nav-bar {
-  width: 5%;
-  height: 100%;
-  background-color: black;
+  width: 10rem;
+  height: 100;
+  background-color: #282c34;
 
+  display: flex;
+  flex-direction: column;
+
+  button {
+    border: none;
+    padding: 20px 0px;
+  }
 }
+
+.favorites {
+  .nav-favorites {
+    background-color: black;
+  }
+}
+
+.now-playing {
+  .nav-now {
+    background-color: black;
+  }
+}
+
+.watched {
+  .nav-watched {
+    background-color: black;
+  }
+}
+
