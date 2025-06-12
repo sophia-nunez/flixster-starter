@@ -1,8 +1,8 @@
 .movie-card {
-    border: 1px solid black;
     width: 300px;
     margin-bottom: 20px;
     position: relative;
+    margin: 5px;
 
 }
 

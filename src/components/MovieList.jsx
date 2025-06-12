@@ -101,7 +101,7 @@ const MovieList = ({ toggleModal, movieType }) => {
   };
 
   const watchMovie = (selectedId, watched) => {
-    const watchedMovie = movieList.find((movie) => movie.id === selectedId);
+    const watchedMovie = displayedList.find((movie) => movie.id === selectedId);
     if (watched) {
       watchedMovie.watched = false;
     } else {
@@ -153,6 +153,7 @@ const MovieList = ({ toggleModal, movieType }) => {
                 onClick={toggleModal(id)}
                 likeMovie={likeMovie}
                 watchMovie={watchMovie}
+                movieType={movieType}
               ></MovieCard>
             );
           })}
