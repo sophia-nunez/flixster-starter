@@ -24,6 +24,7 @@ const MovieList = ({ toggleModal, movieType }) => {
     setDisplayedList(movieList);
   }, [movieList, currentPage]);
 
+  // loads display and header name based on tab
   useEffect(() => {
     loadList();
     setHeader();
@@ -46,6 +47,7 @@ const MovieList = ({ toggleModal, movieType }) => {
     }
   };
 
+  // fetches movie data for now playing
   async function getMovieData() {
     const data = await fetchData(currentPage);
     let list = await parseMovieData(data);
@@ -65,8 +67,9 @@ const MovieList = ({ toggleModal, movieType }) => {
     setCurrentPage(currentPage + 1);
   };
 
+  // selects displayedList based on tab
   const loadList = () => {
-    // filter movieList based on what page we're on
+    // optionally filter movieList based on what page we're on
     switch (movieType) {
       case "now-playing":
         setDisplayedList(movieList);
@@ -105,6 +108,7 @@ const MovieList = ({ toggleModal, movieType }) => {
     setDisplayedList(sortedMovies);
   };
 
+  // finds the movie by id, toggles the liked property, and add/removes it from the liked list
   const likeMovie = (selectedId, liked) => {
     const likedMovie = displayedList.find((movie) => movie.id === selectedId);
     if (liked) {

@@ -23,6 +23,13 @@
 
   height: 100%;
   width: 95%;
+
+  input {
+    width: 85%;
+  }
+  input:focus {
+    outline: none;
+  }
 }
 
 .search-container {

@@ -1,7 +1,41 @@
-import '../styles/Modal.css'
-import { fetchByID } from '../utils/utils';
+import { useEffect, useState } from 'react';
 
-const Modal = (props) => {
+import '../styles/Modal.css'
+import { fetchByID, fetchVideo } from '../utils/utils';
+
+const Modal = ({movie, reference}) => {
+    // modal information
+    const [runtime, setRuntime] = useState(0);
+    const [title, setTitle] = useState(0);
+    const [backdrop, setBackdrop] = useState("");
+    const [releaseDate, setReleaseDate] = useState("");
+    const [genres, setGenres] = useState("");
+    const [overview, setOverview] = useState("");
+    const [trailer, setTrailer] = useState("");
+
+    useEffect(() => {
+      loadInformation();
+    }, [])
+
+    const loadInformation = async () => {
+      // set props to pass: title, poster, rating
+          const genres = movie.genres;
+          const genreNames = genres.map(genre => genre.name);
+      
+          setTitle(movie.title);
+          setBackdrop(movie.poster_path);
+          setRuntime(movie.runtime);
+          setOverview(movie.overview);
+          setReleaseDate(movie.release_date);
+          setGenres(genreNames.join(" | "));
+      
+          // get video
+          const videos = await fetchVideo(movie.id);
+          const trailers = videos.results.filter(video => video.type === "Trailer" && video.site === "YouTube");
+          if (trailers.length > 0) {
+            setTrailer(trailers[0].key);
+          }
+    }
 
    const formatDate = (date) => {
       const dateObj = new Date(date);
@@ -15,17 +49,17 @@ const Modal = (props) => {
     }
 
   return (
-    <aside id="movie-modal" className="modal" ref={props.reference}>
+    <aside id="movie-modal" className="modal" ref={reference}>
       <span className="close">&times;</span>
       <section id="modal-content">
         <article id="movie-card">
-          <h2>{props.title}</h2>
-          <img src={`https://image.tmdb.org/t/p/w300${props.backdrop}`} />
-          <p><strong>Runtime: </strong> {props.runtime} mins</p>
-          <p><strong>Release Date: </strong> {formatDate(props.releaseDate)}</p>
-          <p><strong>Overview: </strong> {props.overview}</p>
-          <p><strong>Genres: </strong> {props.genres}</p>
-          {props.trailer === "" ? <p>No trailer to display</p> : <iframe src={`https://www.youtube.com/embed/${props.trailer}`}></iframe>}
+          <h2>{title}</h2>
+          <img src={`https://image.tmdb.org/t/p/w300${backdrop}`} />
+          <p><strong>Runtime: </strong> {runtime} mins</p>
+          <p><strong>Release Date: </strong> {formatDate(releaseDate)}</p>
+          <p><strong>Overview: </strong> {overview}</p>
+          <p><strong>Genres: </strong> {genres}</p>
+          {trailer === "" ? <p>No trailer to display</p> : <iframe src={`https://www.youtube.com/embed/${trailer}`}></iframe>}
         </article>
       </section>
     </aside>
