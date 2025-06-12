@@ -1,6 +1,7 @@
 import "../styles/MovieCard.css";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
+import { FcRating } from "react-icons/fc";
 
 const MovieCard = ({
   id,
@@ -32,16 +33,18 @@ const MovieCard = ({
       ></img>
       <div className="movie-details">
         <h2>{title}</h2>
-        <p>Rating: {rating.toFixed(2)}</p>
+        <p className="rating-container">
+          <FcRating /> {rating.toFixed(2)}
+        </p>
         {movieType === "now-playing" && (
-          <>
+          <div className="status-icons">
             <button className="status-container" onClick={toggleLiked}>
-              {liked ? <GoHeartFill /> : <GoHeart />}
+              {liked ? <p><GoHeartFill /> Liked</p> : <p><GoHeart /> Like</p>}
             </button>
             <button className="status-container" onClick={toggleWatched}>
-              {watched ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+              {watched ? <p><MdCheckBox /> Watched</p> : <p><MdCheckBoxOutlineBlank /> Watch</p>}
             </button>
-          </>
+          </div>
         )}
       </div>
     </article>

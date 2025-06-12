@@ -1,18 +1,19 @@
 footer {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: start;
     align-items: center;
     padding: 10px 0px;
-    background-color: darkgrey;
+    background-color: var(--primary-dark);
     bottom: 0;
     width: 100%;
 
     p {
-        padding: 0px 20px;
+        color: white;
     }
-
+    
     img {
+        padding: 0px 20px;
         height: 20px;
     }
 }

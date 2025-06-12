@@ -14,6 +14,7 @@ const MovieList = ({ toggleModal, movieType }) => {
   const [totalPages, setTotalPages] = useState(2);
   const [morePages, setMorePages] = useState(true);
   const [filter, setFilter] = useState("default");
+  const [headerText, setHeaderText] = useState("Now Playing");
 
   useEffect(() => {
     getMovieData();
@@ -25,11 +26,34 @@ const MovieList = ({ toggleModal, movieType }) => {
 
   useEffect(() => {
     loadList();
+    setHeader();
   }, [movieType]);
+
+  const setHeader = () => {
+    switch (movieType) {
+      case "now-playing":
+        setHeaderText("Now Playing");
+        break;
+      case "favorites":
+        setHeaderText("Favorites");
+        break;
+      case "watched":
+        setHeaderText("Watched");
+        break;
+      default:
+        setHeaderText("Movies");
+        break;
+    }
+  };
 
   async function getMovieData() {
     const data = await fetchData(currentPage);
-    const list = await parseMovieData(data);
+    let list = await parseMovieData(data);
+
+    list = list.filter(
+      (movie) =>
+        !movieList.some((existingMovie) => existingMovie.id === movie.id)
+    );
 
     setTotalPages(data.total_pages);
     setMovieList((movieList) =>
@@ -51,12 +75,12 @@ const MovieList = ({ toggleModal, movieType }) => {
         setDisplayedList(favorites);
         setMorePages(false);
         break;
-        case "watched":
-          setDisplayedList(watchedMovies);
-          setMorePages(false);
+      case "watched":
+        setDisplayedList(watchedMovies);
+        setMorePages(false);
         break;
     }
-  }
+  };
 
   const sortMovies = (filter) => {
     let sortedMovies = [...displayedList];
@@ -82,7 +106,7 @@ const MovieList = ({ toggleModal, movieType }) => {
   };
 
   const likeMovie = (selectedId, liked) => {
-    const likedMovie = movieList.find((movie) => movie.id === selectedId);
+    const likedMovie = displayedList.find((movie) => movie.id === selectedId);
     if (liked) {
       likedMovie.liked = false;
     } else {
@@ -129,13 +153,13 @@ const MovieList = ({ toggleModal, movieType }) => {
   return (
     <>
       <main>
+        <h1>{headerText}</h1>
         <SearchBar
           setDisplayedList={setDisplayedList}
           loadList={loadList}
           sortMovies={sortMovies}
           setFilter={setFilter}
         ></SearchBar>
-        <h1>Movies</h1>
         <section id="movie-list">
           {displayedList.length == 0 && <p>No movies to display.</p>}
           {displayedList.map((movie) => {

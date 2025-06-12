@@ -1,7 +1,7 @@
 #nav-bar {
-  width: 10rem;
+  width: 5rem;
   height: 100;
-  background-color: #282c34;
+  background-color: var(--primary-dark);
 
   display: flex;
   flex-direction: column;
@@ -10,23 +10,35 @@
     border: none;
     padding: 20px 0px;
   }
+
+  button:hover {
+    background-color: var(--secondary-color);
+    color: black;
+  }
 }
 
 .favorites {
   .nav-favorites {
-    background-color: black;
+    background-color: var(--primary-color);
   }
 }
 
 .now-playing {
   .nav-now {
-    background-color: black;
+    background-color: var(--primary-color);
   }
 }
 
 .watched {
   .nav-watched {
-    background-color: black;
+    background-color: var(--primary-color);
   }
 }
 
+
+@media (min-width: 560px) {
+  #nav-bar {
+    width: 10rem;
+  }
+
+}

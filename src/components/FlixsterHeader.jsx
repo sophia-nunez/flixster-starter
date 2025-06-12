@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
 import '../styles/App.css';
 import '../styles/FlixsterHeader.css';
 
-const FlixsterHeader = () => {
+const FlixsterHeader = ({movieType}) => {
+    
 
     return (
         <header>

@@ -1,11 +1,17 @@
+:root {
+  --primary-color: #01b4e4;
+  --secondary-color: #90cea1;
+  --primary-dark: #0d253f;
+}
+  
 body {
   margin: 0;
-  font-family: ;
-  background-color: #f4f4f4;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #dfe0e4;
 }
 
 button {
-  background-color: #282c34;
+  background-color: var(--primary-dark);
   color: white;
   cursor: pointer;
   font-size: 16px;
@@ -14,6 +20,6 @@ button {
 }
 
 button:hover {
-  background-color: #777;
-  color: white;
+  background-color: var(--secondary-color);
+  color: black;
 }

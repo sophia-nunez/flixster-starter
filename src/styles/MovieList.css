@@ -1,15 +1,16 @@
 main {
-    margin: 3em 0px;
-    width: calc(100vw - 10rem);
+    margin: 0px;
+    width: calc(100vw - 5rem);
     display: flex;
     flex-direction: column;
     gap: 10px;
+    color: var(--primary-dark);
 }
 
 #movie-list {
     background-color: white;
-    padding: 20px 40px;
-    width: 85%;
+    padding: 2em;
+    width: 70%;
     margin: auto;
     max-width: 1200px;
 
@@ -23,9 +24,17 @@ main {
 .load-btn {
     width: fit-content;
     margin: auto;
+    border: none;
+    border-radius: 5px;
 }
 
-.status-container {
-    padding: .2em;
-    border-radius: 5px;
+@media (min-width: 560px) {
+  main {
+    width: calc(100vw - 10rem);
+  }
+
+  #movie-list {
+    width: 85%;
+  }
+
 }
