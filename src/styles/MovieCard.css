@@ -1,8 +1,8 @@
 .movie-card {
-  width: fit-content;
   margin-bottom: 20px;
   position: relative;
-  margin: 10px;
+  margin: 10px 0px;
+  width: fit-content
 }
 
 .movie-card:hover {
@@ -12,8 +12,9 @@
 }
 
 .movie-poster {
-  width: 200px;
+  object-fit: cover;
 }
+
 
 .movie-details {
   display: flex;
@@ -90,8 +91,4 @@
   }
 }
 
-@media (min-width: 1200px) {
-  .movie-poster {
-    width: 300px;
-  }
-}
+

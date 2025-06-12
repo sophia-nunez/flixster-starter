@@ -42,7 +42,7 @@ const searchData = async (search) => {
       throw new Error("Failed to fetch movie search data");
     }
     const data = await response.json();
-    console.log(data);
+
     return data;
   } catch (error) {
     console.error(error);
@@ -105,7 +105,10 @@ async function parseMovieData(data) {
     // set values: title, poster, rating
     const id = movie.id;
     const title = movie.title;
-    const poster = movie.poster_path;
+    let poster = "";
+    if (movie.poster_path) {
+      poster = movie.poster_path;
+    }
     const rating = movie.vote_average;
     const releaseDate = movie.release_date;
 

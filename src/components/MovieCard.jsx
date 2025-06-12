@@ -2,6 +2,7 @@ import "../styles/MovieCard.css";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import { FcRating } from "react-icons/fc";
+import noPoster from "../assets/images/no-poster.png"
 
 const MovieCard = ({
   id,
@@ -29,7 +30,7 @@ const MovieCard = ({
     <article className="movie-card" onClick={() => onClick(id)}>
       <img
         className="movie-poster"
-        src={`https://image.tmdb.org/t/p/w300${poster}`}
+        src={poster === "" ? noPoster : `https://image.tmdb.org/t/p/w300${poster}`}
       ></img>
       <div className="movie-details">
         <h2>{title}</h2>

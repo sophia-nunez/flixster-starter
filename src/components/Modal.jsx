@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import '../styles/Modal.css'
 import { fetchByID, fetchVideo } from '../utils/utils';
+import noPoster from "../assets/images/no-poster.png"
 
 const Modal = ({movie, reference}) => {
     // modal information
@@ -23,7 +24,9 @@ const Modal = ({movie, reference}) => {
           const genreNames = genres.map(genre => genre.name);
       
           setTitle(movie.title);
-          setBackdrop(movie.poster_path);
+          if (movie.poster_path) {
+            setBackdrop(movie.poster_path);
+          }
           setRuntime(movie.runtime);
           setOverview(movie.overview);
           setReleaseDate(movie.release_date);
@@ -54,7 +57,7 @@ const Modal = ({movie, reference}) => {
       <section id="modal-content">
         <article id="movie-card">
           <h2>{title}</h2>
-          <img src={`https://image.tmdb.org/t/p/w300${backdrop}`} />
+          <img src={backdrop === "" ? noPoster : `https://image.tmdb.org/t/p/w300${backdrop}`} />
           <p><strong>Runtime: </strong> {runtime} mins</p>
           <p><strong>Release Date: </strong> {formatDate(releaseDate)}</p>
           <p><strong>Overview: </strong> {overview}</p>
