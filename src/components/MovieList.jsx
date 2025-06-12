@@ -6,10 +6,12 @@ import "../styles/MovieList.css";
 import { fetchData, parseMovieData } from "../utils/utils";
 
 const MovieList = ({ toggleModal, movieType }) => {
+  // arrays of movies by user-interacted properties
   const [displayedList, setDisplayedList] = useState(Array());
   const [movieList, setMovieList] = useState(Array());
   const [favorites, setFavorites] = useState(Array());
   const [watchedMovies, setWatchedMovies] = useState(Array());
+  // page information
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [morePages, setMorePages] = useState(true);
@@ -73,6 +75,7 @@ const MovieList = ({ toggleModal, movieType }) => {
     switch (movieType) {
       case "now-playing":
         setDisplayedList(movieList);
+        setMorePages(true);
         break;
       case "favorites":
         setDisplayedList(favorites);

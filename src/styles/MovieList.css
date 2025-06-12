@@ -13,7 +13,9 @@ main {
     padding: 2em;
     width: 70%;
     margin: auto;
+    margin-bottom: 20px;
     max-width: 1200px;
+    min-height: 400px;
 
     display: flex;
     flex-wrap: wrap;
