@@ -84,6 +84,7 @@ const MovieList = ({ toggleModal, movieType }) => {
     switch (movieType) {
       case "now-playing":
         setDisplayedList(movieList);
+        setDropdownValue("default");
         setMorePages(true);
         break;
       case "favorites":
