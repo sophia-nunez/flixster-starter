@@ -75,8 +75,10 @@ const SearchBar = ({
       {movieType === "now-playing" && (
         <div className="search-container">
           <div className="search-bar-container">
+            <label for="search-bar" />
             <input
               type="text"
+              name="search-bar"
               id="search-bar"
               placeholder="Find a movie..."
               value={searchInput}
@@ -93,6 +95,7 @@ const SearchBar = ({
         </div>
       )}
       <div className="sort-container">
+        <label for="sort-by" />
         <select
           id="sort-by"
           name="sort-by"
