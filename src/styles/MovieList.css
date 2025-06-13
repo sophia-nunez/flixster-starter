@@ -25,6 +25,10 @@ main {
   width: 65%;
   margin: 20px auto;
   min-height: 400px;
+
+  animation-name: animatetop;
+  animation-duration: 1s;
+  
 }
 
 .load-btn {
@@ -72,5 +76,14 @@ main {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes animatetop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
