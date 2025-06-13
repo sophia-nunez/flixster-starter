@@ -185,31 +185,31 @@ const MovieList = ({ toggleModal, movieType }) => {
           setIsLoading={setIsLoading}
         ></SearchBar>
         <section id="movie-list">
-          {isLoading && (
-            <FontAwesomeIcon icon={faSpinner} className="loading" />
-          )}
           {!isLoading && displayedList.length == 0 && (
             <p>No movies to display.</p>
           )}
           {displayedList.map((movie) => {
             const { id, title, poster, rating, liked, watched } = movie;
-
+            
             return (
               <MovieCard
-                key={id}
-                id={id}
-                title={title}
-                poster={poster}
-                rating={rating}
-                liked={liked}
-                watched={watched}
-                onClick={toggleModal(id)}
-                likeMovie={likeMovie}
-                watchMovie={watchMovie}
-                movieType={movieType}
+              key={id}
+              id={id}
+              title={title}
+              poster={poster}
+              rating={rating}
+              liked={liked}
+              watched={watched}
+              onClick={toggleModal(id)}
+              likeMovie={likeMovie}
+              watchMovie={watchMovie}
+              movieType={movieType}
               ></MovieCard>
             );
           })}
+        {isLoading && (
+          <FontAwesomeIcon icon={faSpinner} className="loading" />
+        )}
         </section>
         {morePages && (
           <>
