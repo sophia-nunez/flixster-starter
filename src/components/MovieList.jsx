@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import MovieCard from "./MovieCard";
 import SearchBar from "./SearchBar";
 import "../styles/MovieList.css";
@@ -16,11 +17,14 @@ const MovieList = ({ toggleModal, movieType }) => {
   const [totalPages, setTotalPages] = useState(2);
   const [morePages, setMorePages] = useState(true);
   const [headerText, setHeaderText] = useState("Now Playing");
+  const [isLoading, setIsLoading] = useState(false);
   // search display
   const [dropdownValue, setDropdownValue] = useState("default");
 
   useEffect(() => {
+    setIsLoading(true);
     getMovieData();
+    setIsLoading(false);
   }, [currentPage]);
 
   useEffect(() => {
@@ -29,8 +33,10 @@ const MovieList = ({ toggleModal, movieType }) => {
 
   // loads display and header name based on tab
   useEffect(() => {
+    setIsLoading(true);
     loadList();
     setHeader();
+    setIsLoading(false);
   }, [movieType]);
 
   const setHeader = () => {
@@ -173,9 +179,15 @@ const MovieList = ({ toggleModal, movieType }) => {
           setMorePages={setMorePages}
           setDropdownValue={setDropdownValue}
           dropdownValue={dropdownValue}
+          setIsLoading={setIsLoading}
         ></SearchBar>
         <section id="movie-list">
-          {displayedList.length == 0 && <p>No movies to display.</p>}
+          {isLoading && (
+            <FontAwesomeIcon icon={faSpinner} className="loading" />
+          )}
+          {!isLoading && displayedList.length == 0 && (
+            <p>No movies to display.</p>
+          )}
           {displayedList.map((movie) => {
             const { id, title, poster, rating, liked, watched } = movie;
 

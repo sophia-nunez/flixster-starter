@@ -11,7 +11,8 @@ const SearchBar = ({
   movieType,
   setMorePages,
   setDropdownValue,
-  dropdownValue
+  dropdownValue,
+  setIsLoading,
 }) => {
   const [searchInput, setSearchInput] = useState("");
 
@@ -36,8 +37,9 @@ const SearchBar = ({
     if (searchInput === "") {
       handleClear();
     }
-
+    setIsLoading(true);
     searchForMovie();
+    setIsLoading(false);
   };
 
   // fetches query of searchInput and sets display

@@ -40,7 +40,6 @@ main {
   font-size: 25px;
 }
 
-
 @media (min-width: 903px) {
   main {
     width: calc(100vw - 10rem);
@@ -59,5 +58,19 @@ main {
       font-size: 70px;
     }
   }
+}
 
+.loading {
+  animation: spin 2s linear infinite;
+  font-size: 300px;
+  margin: auto;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
