@@ -81,6 +81,9 @@
 
 .status-container:hover {
   cursor: pointer;
+  transform: scale(1.06);
+  color: lightgray;
+  background-color: transparent;
 }
 
 .rating-container {

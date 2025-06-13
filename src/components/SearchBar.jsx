@@ -75,7 +75,7 @@ const SearchBar = ({
       {movieType === "now-playing" && (
         <div className="search-container">
           <div className="search-bar-container">
-            <label for="search-bar" />
+            <label htmlFor="search-bar" />
             <input
               type="text"
               name="search-bar"
@@ -95,7 +95,7 @@ const SearchBar = ({
         </div>
       )}
       <div className="sort-container">
-        <label for="sort-by" />
+        <label htmlFor="sort-by" />
         <select
           id="sort-by"
           name="sort-by"

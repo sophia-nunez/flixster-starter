@@ -58,15 +58,15 @@ const Modal = ({ movie, reference }) => {
       <span className="close">&times;</span>
       <section id="modal-content">
         <article id="movie-card">
-          <h2>{title}</h2>
           <img className="modal-backdrop"
             src={
               backdrop === ""
-                ? noPoster
-                : `https://image.tmdb.org/t/p/w300${backdrop}`
+              ? noPoster
+              : `https://image.tmdb.org/t/p/w300${backdrop}`
             }
             alt={`Movie backdrop for ${title}`}
-          />
+            />
+            <h2>{title}</h2>
           <p>
             <strong>Runtime: </strong> {runtime} mins
           </p>
