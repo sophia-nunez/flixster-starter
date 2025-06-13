@@ -3,10 +3,10 @@
   --secondary-color: #470004;
   --primary-dark: black;
 }
-  
+
 body {
   margin: 0;
-  font-family: 'Istok Web', sans-serif;
+  font-family: "Istok Web", sans-serif;
   background-color: white;
 }
 

@@ -17,6 +17,7 @@ const SearchBar = ({
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
+    // reset select when search is started
     setDropdownValue("default");
   }, [searchInput]);
 
@@ -51,6 +52,7 @@ const SearchBar = ({
     setMorePages(false);
   }
 
+  // when new option is selected, updates sort value
   const handleChange = (event) => {
     const { value } = event.target;
     setDropdownValue(value);

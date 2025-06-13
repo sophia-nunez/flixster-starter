@@ -16,6 +16,7 @@ const MovieCard = ({
   watchMovie,
   movieType,
 }) => {
+  // toggle liked and watched toggles the movie prop and adds/removes from corresponding array
   const toggleLiked = (event) => {
     event.stopPropagation();
     likeMovie(id, liked);

@@ -95,8 +95,7 @@ const fetchVideo = async (movieID) => {
   } catch (error) {
     console.error(error);
   }
-
-}
+};
 
 async function parseMovieData(data) {
   const movies = [];
@@ -120,7 +119,7 @@ async function parseMovieData(data) {
       rating,
       releaseDate,
       liked: false,
-      watched: false
+      watched: false,
     };
 
     // add to array

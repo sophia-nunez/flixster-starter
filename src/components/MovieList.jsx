@@ -18,9 +18,10 @@ const MovieList = ({ toggleModal, movieType }) => {
   const [morePages, setMorePages] = useState(true);
   const [headerText, setHeaderText] = useState("Now Playing");
   const [isLoading, setIsLoading] = useState(false);
-  // search display
+  // sort menu display & value
   const [dropdownValue, setDropdownValue] = useState("default");
 
+  // adds next page on to current when page is incremented
   useEffect(() => {
     setIsLoading(true);
     getMovieData();
@@ -74,7 +75,7 @@ const MovieList = ({ toggleModal, movieType }) => {
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
-    setDropdownValue("default");
+    setDropdownValue("default"); // reset select to default (no sort)
   };
 
   // selects displayedList based on tab
@@ -98,6 +99,7 @@ const MovieList = ({ toggleModal, movieType }) => {
     }
   };
 
+  // creates temporary array of sorted movies (not stored in state)
   const sortMovies = () => {
     let sortedMovies = [...displayedList];
 

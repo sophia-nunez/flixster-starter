@@ -1,9 +1,9 @@
 main {
-  margin: 0px;
-  width: calc(100vw - 5rem);
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin: 0px;
+  width: calc(100vw - 5rem);
   color: var(--primary-dark);
 
   h1 {
@@ -13,11 +13,6 @@ main {
 }
 
 #movie-list {
-  border-radius: 5px;
-  width: 65%;
-  margin: 20px auto;
-  min-height: 400px;
-
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -25,13 +20,18 @@ main {
   justify-content: start;
   gap: clamp(2rem, 2vw, 3rem);
   align-items: stretch;
+
+  border-radius: 5px;
+  width: 65%;
+  margin: 20px auto;
+  min-height: 400px;
 }
 
 .load-btn {
   font-size: 20px;
   padding: 1rem;
-  width: fit-content;
   margin: 20px auto;
+  width: fit-content;
   border: none;
   border-radius: 5px;
 }
