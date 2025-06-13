@@ -108,6 +108,10 @@ async function parseMovieData(data) {
     if (movie.poster_path) {
       poster = movie.poster_path;
     }
+    let backdrop = "";
+    if (movie.backdrop_path) {
+      backdrop = movie.backdrop_path;
+    }
     const rating = movie.vote_average;
     const releaseDate = movie.release_date;
 
@@ -118,6 +122,7 @@ async function parseMovieData(data) {
       poster,
       rating,
       releaseDate,
+      backdrop,
       liked: false,
       watched: false,
     };

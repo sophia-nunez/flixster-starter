@@ -65,3 +65,7 @@
 iframe {
   height: 200px;
 }
+
+.modal-backdrop {
+  width: 50vh;
+}

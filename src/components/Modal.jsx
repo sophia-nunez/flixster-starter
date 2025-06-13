@@ -24,8 +24,8 @@ const Modal = ({ movie, reference }) => {
     const genreNames = genres.map((genre) => genre.name);
 
     setTitle(movie.title);
-    if (movie.poster_path) {
-      setBackdrop(movie.poster_path);
+    if (movie.backdrop_path) {
+      setBackdrop(movie.backdrop_path);
     }
     setRuntime(movie.runtime);
     setOverview(movie.overview);
@@ -59,13 +59,13 @@ const Modal = ({ movie, reference }) => {
       <section id="modal-content">
         <article id="movie-card">
           <h2>{title}</h2>
-          <img
+          <img className="modal-backdrop"
             src={
               backdrop === ""
                 ? noPoster
                 : `https://image.tmdb.org/t/p/w300${backdrop}`
             }
-            alt={`Movie poster backdrop for ${title}`}
+            alt={`Movie backdrop for ${title}`}
           />
           <p>
             <strong>Runtime: </strong> {runtime} mins
