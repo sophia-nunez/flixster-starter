@@ -49,7 +49,7 @@
 }
 
 .close {
-  color: #aaa;
+  color: var(--primary-color);
   float: right;
   font-size: 28px;
   font-weight: bold;
