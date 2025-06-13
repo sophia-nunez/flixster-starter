@@ -2,39 +2,36 @@
   width: 5rem;
   height: 100;
   background-color: var(--primary-dark);
-
+  padding-top: 3px;
   display: flex;
   flex-direction: column;
 
   button {
     border: none;
-    padding: 20px 0px;
+    padding: 40px 0px;
   }
 
   button:hover {
     background-color: var(--secondary-color);
-    color: black;
+    color: white;
   }
 }
 
 .favorites {
   .nav-favorites {
     background-color: var(--primary-color);
-    color: var(--primary-dark);
   }
 }
 
 .now-playing {
   .nav-now {
     background-color: var(--primary-color);
-    color: var(--primary-dark);
   }
 }
 
 .watched {
   .nav-watched {
     background-color: var(--primary-color);
-    color: var(--primary-dark);
   }
 }
 

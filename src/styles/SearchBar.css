@@ -24,6 +24,11 @@
   align-items: center;
   height: 100%;
   width: 95%;
+  border: 1px solid var(--primary-dark);
+
+  * {
+    border: none;
+  }
 
   input {
     width: 85%;
@@ -43,7 +48,6 @@
 
   * {
     height: 42px;
-    border: none;
   }
 
   #search-bar {
@@ -57,9 +61,17 @@
 
 select {
   font-family: inherit;
-  border: none;
+  border: 1px solid var(--primary-dark);
   height: 40px;
   width: 10rem;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+.clear-x:hover {
+  cursor: pointer;
 }
 
 @media (min-width: 660px) {

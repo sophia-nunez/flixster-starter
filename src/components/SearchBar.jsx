@@ -40,6 +40,7 @@ const SearchBar = (props) => {
     const movies = await parseMovieData(data);
 
     props.setDisplayedList(movies);
+    props.setMorePages(false);
   }
 
   const handleChange = (event) => {
@@ -71,7 +72,7 @@ const SearchBar = (props) => {
             onChange={updateSearch}
             onKeyUp={enterSearch}
           ></input>
-          <div onClick={handleClear}>
+          <div className="clear-x" onClick={handleClear}>
             <MdClear />
           </div>
         </div>

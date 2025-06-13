@@ -167,6 +167,7 @@ const MovieList = ({ toggleModal, movieType }) => {
           sortMovies={sortMovies}
           setFilter={setFilter}
           movieType={movieType}
+          setMorePages={setMorePages}
         ></SearchBar>
         <section id="movie-list">
           {displayedList.length == 0 && <p>No movies to display.</p>}

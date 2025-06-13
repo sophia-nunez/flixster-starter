@@ -6,7 +6,7 @@ const FlixsterHeader = ({movieType}) => {
 
     return (
         <header>
-            <h1 className="App-header">Flixster</h1>
+            <h1 className="App-header">🍿 Flixster</h1>
         </header>
     )
 }
