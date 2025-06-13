@@ -103,7 +103,7 @@ const SearchBar = ({
           onChange={handleChange}
         >
           <option value="default" disabled={true}>
-            Select option
+            Sort by
           </option>
           <option value="alphabetical">Title (A-Z)</option>
           <option value="release">Most recent</option>
