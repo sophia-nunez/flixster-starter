@@ -196,7 +196,7 @@ const MovieList = ({ toggleModal, movieType }) => {
             <button className="load-btn" onClick={nextPage}>
               Load More
             </button>
-            <p>
+            <p className="page-display">
               Page {currentPage} of {totalPages}
             </p>
           </>

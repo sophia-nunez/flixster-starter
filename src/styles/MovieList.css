@@ -9,29 +9,34 @@ main {
 
   h1 {
     font-size: 50px;
+    margin: 15px auto;
   }
 }
 
 #movie-list {
   border-radius: 5px;
   width: 70%;
-  margin: auto;
-  margin-bottom: 20px;
+  margin: 20px auto;
   min-height: 400px;
 
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
-  gap: 7px;
+  justify-content: start;
+  gap: clamp(2rem, 2vw, 3rem);
   align-items: stretch;
 }
 
 .load-btn {
+  font-size: 30px;
   width: fit-content;
-  margin: auto;
+  margin: 20px auto;
   border: none;
   border-radius: 5px;
+}
+
+.page-display {
+  font-size: 25px;
 }
 
 @media (min-width: 560px) {
@@ -44,12 +49,6 @@ main {
   }
 }
 
-@media (min-width: 879px) {
-  #movie-list {
-    justify-content: space-evenly;
-  }
-}
-
 @media (min-width: 1850px) {
   main {
     width: calc(100vw - 15rem);
@@ -59,13 +58,4 @@ main {
     }
   }
 
-  #movie-list {
-    width: 60%;
-  }
-}
-
-@media (min-width: 2275px) {
-  #movie-list {
-    justify-content: space-between;
-  }
 }

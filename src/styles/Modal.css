@@ -23,7 +23,7 @@
   border-radius: 20px;
   animation-name: animatetop;
   animation-duration: 0.7s;
-  box-shadow: 0px 0px 15px 1px rgba(1, 180, 228, 0.5);
+  box-shadow: 0px 0px 15px 1px rgba(109, 0, 0, 0.5);
 
   #movie-card {
     margin: auto;

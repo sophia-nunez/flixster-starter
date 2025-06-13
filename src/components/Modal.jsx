@@ -57,7 +57,7 @@ const Modal = ({movie, reference}) => {
       <section id="modal-content">
         <article id="movie-card">
           <h2>{title}</h2>
-          <img src={backdrop === "" ? noPoster : `https://image.tmdb.org/t/p/w300${backdrop}`} />
+          <img src={backdrop === "" ? noPoster : `https://image.tmdb.org/t/p/w300${backdrop}`} alt={`Movie poster backdrop for ${title}`} />
           <p><strong>Runtime: </strong> {runtime} mins</p>
           <p><strong>Release Date: </strong> {formatDate(releaseDate)}</p>
           <p><strong>Overview: </strong> {overview}</p>

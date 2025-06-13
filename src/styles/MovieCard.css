@@ -2,7 +2,8 @@
   margin-bottom: 20px;
   position: relative;
   margin: 10px 0px;
-  width: fit-content
+  width: fit-content;
+  border-radius: 10px;
 }
 
 .movie-card:hover {
@@ -12,6 +13,7 @@
 }
 
 .movie-poster {
+  border-radius: 10px;
   object-fit: cover;
 }
 

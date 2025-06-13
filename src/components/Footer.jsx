@@ -4,7 +4,7 @@ import TMDBlogo from "../assets/images/tmdb_logo.svg";
 const Footer = () => {
   return (
     <footer>
-      <img src={TMDBlogo} />
+      <img src={TMDBlogo} alt="TMDB logo"/>
       <p>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
       </p>

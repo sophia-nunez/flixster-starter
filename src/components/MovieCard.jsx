@@ -2,7 +2,7 @@ import "../styles/MovieCard.css";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import { FcRating } from "react-icons/fc";
-import noPoster from "../assets/images/no-poster.png"
+import noPoster from "../assets/images/no-poster.png";
 
 const MovieCard = ({
   id,
@@ -30,7 +30,10 @@ const MovieCard = ({
     <article className="movie-card" onClick={() => onClick(id)}>
       <img
         className="movie-poster"
-        src={poster === "" ? noPoster : `https://image.tmdb.org/t/p/w300${poster}`}
+        src={
+          poster === "" ? noPoster : `https://image.tmdb.org/t/p/w300${poster}`
+        }
+        alt={`Movie poster for ${title}`}
       ></img>
       <div className="movie-details">
         <h2>{title}</h2>
@@ -40,10 +43,26 @@ const MovieCard = ({
         {movieType === "now-playing" && (
           <div className="status-icons">
             <button className="status-container" onClick={toggleLiked}>
-              {liked ? <p><GoHeartFill /> Liked</p> : <p><GoHeart /> Like</p>}
+              {liked ? (
+                <p>
+                  <GoHeartFill /> Liked
+                </p>
+              ) : (
+                <p>
+                  <GoHeart /> Like
+                </p>
+              )}
             </button>
             <button className="status-container" onClick={toggleWatched}>
-              {watched ? <p><MdCheckBox /> Watched</p> : <p><MdCheckBoxOutlineBlank /> Watch</p>}
+              {watched ? (
+                <p>
+                  <MdCheckBox /> Watched
+                </p>
+              ) : (
+                <p>
+                  <MdCheckBoxOutlineBlank /> Watch
+                </p>
+              )}
             </button>
           </div>
         )}
