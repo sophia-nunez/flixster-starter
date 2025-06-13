@@ -3,7 +3,6 @@ main {
   width: calc(100vw - 5rem);
   display: flex;
   flex-direction: column;
-  flex: grow;
   gap: 10px;
   color: var(--primary-dark);
 
@@ -15,13 +14,14 @@ main {
 
 #movie-list {
   border-radius: 5px;
-  width: 70%;
+  width: 65%;
   margin: 20px auto;
   min-height: 400px;
 
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  flex-basis: auto;
   justify-content: start;
   gap: clamp(2rem, 2vw, 3rem);
   align-items: stretch;
@@ -39,7 +39,8 @@ main {
   font-size: 25px;
 }
 
-@media (min-width: 560px) {
+
+@media (min-width: 903px) {
   main {
     width: calc(100vw - 10rem);
   }
@@ -54,7 +55,7 @@ main {
     width: calc(100vw - 15rem);
 
     h1 {
-      font-size: 100px;
+      font-size: 70px;
     }
   }
 

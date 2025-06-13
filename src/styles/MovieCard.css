@@ -4,6 +4,7 @@
   margin: 10px 0px;
   width: fit-content;
   border-radius: 10px;
+  flex: 1 1 auto;
 }
 
 .movie-card:hover {
@@ -14,11 +15,13 @@
 
 .movie-poster {
   border-radius: 10px;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 
 
-.movie-details {
+.movie-details { 
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -92,5 +95,3 @@
     font-size: 20px;
   }
 }
-
-
