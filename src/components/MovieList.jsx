@@ -15,8 +15,9 @@ const MovieList = ({ toggleModal, movieType }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [morePages, setMorePages] = useState(true);
-  const [filter, setFilter] = useState("default");
   const [headerText, setHeaderText] = useState("Now Playing");
+  // search display
+  const [dropdownValue, setDropdownValue] = useState("default");
 
   useEffect(() => {
     getMovieData();
@@ -67,6 +68,7 @@ const MovieList = ({ toggleModal, movieType }) => {
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
+    setDropdownValue("default");
   };
 
   // selects displayedList based on tab
@@ -79,19 +81,21 @@ const MovieList = ({ toggleModal, movieType }) => {
         break;
       case "favorites":
         setDisplayedList(favorites);
+        setDropdownValue("default");
         setMorePages(false);
         break;
       case "watched":
         setDisplayedList(watchedMovies);
+        setDropdownValue("default");
         setMorePages(false);
         break;
     }
   };
 
-  const sortMovies = (filter) => {
+  const sortMovies = () => {
     let sortedMovies = [...displayedList];
 
-    switch (filter) {
+    switch (dropdownValue) {
       case "alphabetical":
         sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
         break;
@@ -165,9 +169,10 @@ const MovieList = ({ toggleModal, movieType }) => {
           setDisplayedList={setDisplayedList}
           loadList={loadList}
           sortMovies={sortMovies}
-          setFilter={setFilter}
           movieType={movieType}
           setMorePages={setMorePages}
+          setDropdownValue={setDropdownValue}
+          dropdownValue={dropdownValue}
         ></SearchBar>
         <section id="movie-list">
           {displayedList.length == 0 && <p>No movies to display.</p>}

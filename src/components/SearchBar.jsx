@@ -4,9 +4,16 @@ import { MdClear } from "react-icons/md";
 
 import { searchData, parseMovieData } from "../utils/utils";
 
-const SearchBar = (props) => {
+const SearchBar = ({
+  setDisplayedList,
+  loadList,
+  sortMovies,
+  movieType,
+  setMorePages,
+  setDropdownValue,
+  dropdownValue
+}) => {
   const [searchInput, setSearchInput] = useState("");
-  const [dropdownValue, setDropdownValue] = useState("");
 
   useEffect(() => {
     setDropdownValue("default");
@@ -14,8 +21,7 @@ const SearchBar = (props) => {
 
   useEffect(() => {
     if (dropdownValue) {
-      props.setFilter(dropdownValue);
-      props.sortMovies(dropdownValue);
+      sortMovies(dropdownValue);
     }
   }, [dropdownValue]);
 
@@ -39,8 +45,8 @@ const SearchBar = (props) => {
     const data = await searchData(searchInput);
     const movies = await parseMovieData(data);
 
-    props.setDisplayedList(movies);
-    props.setMorePages(false);
+    setDisplayedList(movies);
+    setMorePages(false);
   }
 
   const handleChange = (event) => {
@@ -57,34 +63,36 @@ const SearchBar = (props) => {
   // loads previous displayedList (not searched) when search is cleared
   const handleClear = () => {
     setSearchInput("");
-    props.loadList();
+    loadList();
   };
 
   return (
     <section className="search-bar">
-      {props.movieType === "now-playing" && <div className="search-container">
-        <div className="search-bar-container">
-          <input
-            type="text"
-            id="search-bar"
-            placeholder="Find a movie..."
-            value={searchInput}
-            onChange={updateSearch}
-            onKeyUp={enterSearch}
-          ></input>
-          <div className="clear-x" onClick={handleClear}>
-            <MdClear />
+      {movieType === "now-playing" && (
+        <div className="search-container">
+          <div className="search-bar-container">
+            <input
+              type="text"
+              id="search-bar"
+              placeholder="Find a movie..."
+              value={searchInput}
+              onChange={updateSearch}
+              onKeyUp={enterSearch}
+            ></input>
+            <div className="clear-x" onClick={handleClear}>
+              <MdClear />
+            </div>
           </div>
+          <button type="submit" onClick={handleSearch}>
+            Search
+          </button>
         </div>
-        <button type="submit" onClick={handleSearch}>
-          Search
-        </button>
-      </div>}
+      )}
       <div className="sort-container">
         <select
           id="sort-by"
           name="sort-by"
-          defaultValue="default"
+          value={dropdownValue}
           onChange={handleChange}
         >
           <option value="default" disabled={true}>
