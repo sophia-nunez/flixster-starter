@@ -5,6 +5,7 @@
   width: fit-content;
   border-radius: 10px;
   flex: 1 1 auto;
+  max-width: 360px;
 }
 
 .movie-card:hover {
