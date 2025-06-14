@@ -113,20 +113,20 @@ https://www.loom.com/share/c809840bdd8f43f78e8f0949bba41fad?sid=af0ce02e-13bb-44
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+The labs were helpful, especially in familiarizing myself with the basics of React hooks like useState. The thing I was most unprepared for would be planning state thoughout my whole application. I often realized I needed values that were maintained between components and ended up having to figure out how to pass them in, resulting in some inefficient or messy code.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+With more time, I would have modified my styling to go for a more consistent aesthetic. Using references such as movie sites for modern styles, or choosing one theme would have made it much easier to decide how to style each component and make a more cohesive page. I would also work on styling for all images/videos throughout the project. Having image size be more responsive and blend into the existing page would greatly increase the user experience of this site. From a more technical standpoint, with more time I would have considered how I could optimize my code for scalability, such as using filters for each tab rather than separate arrays.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I think my project demo went well. I was able to showcase the required and stretch features as planned and get some feedback on small style changes, such as consistent height between nav bar components. Something that didn't go as planned was my pacing, as I feel I rushed through a lot of the features and didn't show some of the additional things I added (such as the loading spinner, animations, etc.).
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+I utilized the icon libraries [Font Awesome](https://fontawesome.com/) and [React Icons](https://react-icons.github.io/react-icons/), as well as a [Google Font](https://fonts.google.com/specimen/Istok+Web?query=istok+web).
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Thank you to Greg for his support during this week! We had a good discussion about my project about halfway through. Additionally, thank you to Gabriel for his advice on some of my style issues towards the end of the work week. I was able to clean up my site a little more and make a project I'm proud of!
